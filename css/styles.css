@@ -14,88 +14,105 @@ body {
   align-items: center;
   justify-content: center;
   font-size: 16px;
-  gap: 30px;
 }
 
-.form {
-  overflow: hidden;
-  border-radius: 8px;
-  height: 300px;
-  width: 500px;
-}
-.form .page {
-  display: none;
-  align-items: center;
+.container {
+  min-width: 500px;
+  min-height: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
   justify-content: center;
-  width: 100%;
-  height: 100%;
-  background-color: #fff;
-  color: #333;
-  transition: opacity 0.3s;
-  opacity: 0;
-}
-.form .page:nth-of-type(even) {
   background-color: #ddd;
 }
-.form .active-page {
-  display: flex;
-  opacity: 1;
-}
 
-.progress-box {
-  display: flex;
+.box {
   position: relative;
-  justify-content: space-between;
-  width: 500px;
-}
-.progress-box::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: -1;
-  width: 100%;
-  height: 6px;
-  background-color: #fff;
-}
-.progress-box .step {
-  width: 45px;
-  height: 45px;
-  background-color: #fff;
-  color: #333;
-  text-align: center;
-  border-radius: 5px;
+  width: 30%;
+  height: 30%;
+  margin: 6.5px;
+  background-color: #333;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.6, color 0.6s;
+  cursor: pointer;
 }
-.progress-box .progress-bar {
-  height: 6px;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: royalblue;
-  width: 0%;
-  transition: width 0.3s;
-  position: absolute;
-  z-index: -1;
+.box:hover .circle {
+  opacity: 0.5;
 }
-.progress-box .active-step {
-  background-color: royalblue;
-  color: gold;
+.box:hover .cross {
+  opacity: 0.5;
 }
 
-.buttons-box {
+.circle {
+  opacity: 0;
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  border: 4px solid white;
+  border-radius: 50%;
+  transition: opacity 0.3s;
+}
+
+.cross {
+  opacity: 0;
+  position: relative;
+  width: 80%;
+  height: 80%;
+  height: 4px;
+  background-color: white;
+  transform: rotate(-45deg);
+  transition: opacity 0.3s;
+}
+.cross::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  content: "";
+  width: 100%;
+  height: 100%;
+  height: 4px;
+  background-color: white;
+  transform: translate(-50%, -50%) rotate(-90deg);
+}
+
+.player-panel {
   display: flex;
-  gap: 30px;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  padding: 2rem;
 }
-.buttons-box .btn {
-  padding: 0.5em 1em;
-  cursor: pointer;
-  border-radius: 5px;
-  font-size: 24px;
+.player-panel .player-choose {
+  position: relative;
+  display: flex;
 }
-.buttons-box .btn:hover {
-  background-color: royalblue;
-  color: gold;
+.player-panel .box {
+  width: 150px;
+  height: 150px;
+  margin: 20px;
+  transition: transform 0.3s, border-radius 0.3s;
+}
+.player-panel .box .circle,
+.player-panel .box .cross {
+  opacity: 1;
+  transition: border 0.3s, opacity 0.3s, background-color 0.3s;
+}
+.player-panel .box .cross::after {
+  transition: background-color 0.3s;
+}
+.player-panel .box:hover .circle {
+  opacity: 0.5;
+  border: 3px solid greenyellow;
+}
+.player-panel .box:hover .cross {
+  opacity: 0.5;
+  background-color: greenyellow;
+}
+.player-panel .box:hover .cross::after {
+  background-color: greenyellow;
+}
+.player-panel .box:hover {
+  transform: scale(1.05);
+  border-radius: 8px;
 }/*# sourceMappingURL=styles.css.map */
