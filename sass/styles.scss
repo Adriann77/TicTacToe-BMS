@@ -91,6 +91,7 @@ body {
 	}
 
 	.box {
+
 		width: 150px;
 		height: 150px;
 		margin: 20px;
@@ -100,7 +101,11 @@ body {
 		.cross {
 			opacity: 1;
 			transition: border .3s, opacity .3s, background-color .3s;
+
 		}
+
+		
+	
 
 		.cross::after{
 			transition: background-color .3s;
