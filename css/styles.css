@@ -24,6 +24,7 @@ body {
   align-content: center;
   justify-content: center;
   background-color: #ddd;
+  display: none;
 }
 
 .box {
@@ -82,6 +83,7 @@ body {
   text-align: center;
   align-items: center;
   padding: 2rem;
+  display: none;
 }
 .player-panel .player-choose {
   position: relative;
@@ -115,4 +117,8 @@ body {
 .player-panel .box:hover {
   transform: scale(1.05);
   border-radius: 8px;
+}
+
+.active {
+  display: flex;
 }/*# sourceMappingURL=styles.css.map */
