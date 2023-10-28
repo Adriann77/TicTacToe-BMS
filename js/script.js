@@ -247,7 +247,7 @@ const AIturn = () => {
 	setTimeout(() => {
         restartGame()
     }, 1000);
-    }else{
+    }
         const gameboardSquares = document.querySelectorAll('[data-index]');
         AIPicked = gameboardSquares[Math.floor(Math.random() * (gameboardSquares.length - 1))].lastElementChild;
     
@@ -259,7 +259,7 @@ const AIturn = () => {
         AIPicked.parentElement.removeAttribute('data-index');
     
         playerTurn();
-    }
+    
 };
 
 const playerTurn = () => {
@@ -286,7 +286,10 @@ const handlePlayerSquareClick = event => {
 	el.lastElementChild.style.opacity = '1';
 	el.setAttribute('disabled', 'true');
 	el.removeAttribute('data-index');
-	AIturn();
+    checkWin()
+	setTimeout(() => {
+        AIturn();
+    }, 1);
 };
 
 const startGame = () => {
