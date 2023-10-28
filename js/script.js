@@ -8,6 +8,7 @@ const diaoWin = document.querySelector('.diao-win');
 
 let AIPicked;
 let currentPlayerPick;
+let roundCount = 0;
 
 const restartGame = () => {
 	allCell.forEach(el => {
@@ -21,6 +22,7 @@ const restartGame = () => {
 	winRow.style.backgroundColor = 'transparent';
 	colWin.style.backgroundColor = 'transparent';
 	diaoWin.style.backgroundColor = 'transparent';
+    roundCount = 0
 };
 
 const checkWin = () => {
@@ -187,6 +189,7 @@ const checkWin = () => {
 			el.setAttribute('disabled', 'true');
 		});
 		diaoWin.style.backgroundColor = 'red';
+        diaoWin.style.transform = 'rotate(-45deg)';
 		setTimeout(() => {
 			restartGame();
 		}, 2000);
@@ -199,6 +202,7 @@ const checkWin = () => {
 			el.setAttribute('disabled', 'true');
 		});
 		diaoWin.style.backgroundColor = 'red';
+		diaoWin.style.transform = 'rotate(45deg)';
 
 		setTimeout(() => {
 			restartGame();
@@ -212,7 +216,7 @@ const checkWin = () => {
 			el.setAttribute('disabled', 'true');
 		});
 		diaoWin.style.backgroundColor = 'red';
-		diaoWin.style.transform = 'rotate(45deg)';
+        diaoWin.style.transform = 'rotate(-45deg)';
 		setTimeout(() => {
 			restartGame();
 		}, 2000);
@@ -229,25 +233,39 @@ const checkWin = () => {
 		setTimeout(() => {
 			restartGame();
 		}, 2000);
-	}
+	}else if(roundCount === 11){
+        
+        restartGame();
+
+    }
 };
 
 const AIturn = () => {
-	const gameboardSquares = document.querySelectorAll('[data-index]');
-	AIPicked = gameboardSquares[Math.floor(Math.random() * (gameboardSquares.length - 1))].lastElementChild;
-
+    roundCount++
+    console.log(roundCount);
+    if(roundCount === 9){
 	setTimeout(() => {
-		AIPicked.style.opacity = '1';
-	}, 500);
-	currentPlayerPick === 'cross' ? AIPicked.classList.add('circle') : AIPicked.classList.add('cross');
-
-	AIPicked.parentElement.setAttribute('disabled', 'true');
-	AIPicked.parentElement.removeAttribute('data-index');
-
-	playerTurn();
+        restartGame()
+    }, 1000);
+    }else{
+        const gameboardSquares = document.querySelectorAll('[data-index]');
+        AIPicked = gameboardSquares[Math.floor(Math.random() * (gameboardSquares.length - 1))].lastElementChild;
+    
+        AIPicked.style.opacity = '1';
+    
+        currentPlayerPick === 'cross' ? AIPicked.classList.add('circle') : AIPicked.classList.add('cross');
+    
+        AIPicked.parentElement.setAttribute('disabled', 'true');
+        AIPicked.parentElement.removeAttribute('data-index');
+    
+        playerTurn();
+    }
 };
 
 const playerTurn = () => {
+    roundCount++
+    
+
 	checkWin();
 	const gameboardSquares = document.querySelectorAll('[data-index]');
 
@@ -284,7 +302,6 @@ playerChoose.forEach(el => {
 		playerPanel.classList.remove('active');
 		gameContainer.classList.add('active');
 		currentPlayerPick = el.lastElementChild.classList.value;
-		console.log(currentPlayerPick);
 		startGame();
 	});
 });
